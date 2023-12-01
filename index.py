@@ -150,7 +150,7 @@ def movie():
     doc_ref.set(doc)    
     return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate
 
-@app.route("/searchQ", methods=["POST","GET"])
+@app.route("/searchQ", methods=["GET","POST"])
 def searchQ():
     if request.method == "POST":
         MovieTitle = request.form["MovieTitle"]
