@@ -24,7 +24,7 @@ def index():
     homepage += "<a href=/search>圖書查詢</a><br>"
     homepage += "<a href=/spider>網路爬蟲擷取課程資料</a><br>"
     homepage += "<br><a href=/movie>讀取開眼電影即將上映影片，寫入Firestore</a><br>"
-    homepage += "<br><a href=/searchQ>查詢開眼電影即將上映影片</a><br>"
+    homepage += "<br><a href=/searchmovie>查詢開眼電影即將上映影片</a><br>"
     return homepage
 
 @app.route("/mis")
@@ -150,8 +150,8 @@ def movie():
     doc_ref.set(doc)    
     return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate
 
-@app.route("/searchQ", methods=["GET","POST"])
-def searchQ():
+@app.route("/searchmovie", methods=["GET","POST"])
+def searchmovie():
     if request.method == "POST":
         MovieTitle = request.form["MovieTitle"]
         info = ""
