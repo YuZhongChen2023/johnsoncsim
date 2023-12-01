@@ -135,19 +135,19 @@ def movie():
         showDate = show[0:10]
         showLength = show[13:]
 
-doc = {
-    "title": title,
-    "picture": picture,
-    "hyperlink": hyperlink,
-    "showDate": showDate,
-    "showLength": showLength,
-    "lastUpdate": lastUpdate
-}
+    doc = {
+        "title": title,
+        "picture": picture,
+        "hyperlink": hyperlink,
+        "showDate": showDate,
+        "showLength": showLength,
+        "lastUpdate": lastUpdate
+    }
 
-db = firestore.client()
-doc_ref = db.collection("電影").document(movie_id)
-doc_ref.set(doc)
-return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate
+    db = firestore.client()
+    doc_ref = db.collection("電影").document(movie_id)
+    doc_ref.set(doc)
+    return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate
 
 if __name__ == "__main__":
     app.debug = True
