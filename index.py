@@ -147,8 +147,22 @@ def movie():
     db = firestore.client()
     doc_ref = db.collection("電影").document(movie_id)
     doc_ref.set(doc)    
-    return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate 
+    return "近期上映電影已爬蟲及存檔完畢，網站最近更新日期為：" + lastUpdate
 
+@app.route("/search")
+def search():
+    info = ""
+    db = firestore.client()  
+    docs = db.collection("電影").get() 
+    for doc in docs:
+        if "飛鴨" in doc.to_dict()["title"]:
+            info += "片名：" + doc.to_dict()["title"] + "<br>" 
+            info += "海報：" + doc.to_dict()["picture"] + "<br>"
+            info += "影片介紹：" + doc.to_dict()["hyperlink"] + "<br>"
+            info += "片長：" + doc.to_dict()["showLength"] + " 分鐘<br>" 
+            info += "上映日期：" + doc.to_dict()["showDate"] + "<br><br>"           
+    return info
+ 
 if __name__ == "__main__":
     app.debug = True
     app.run()
